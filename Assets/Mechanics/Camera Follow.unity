@@ -293,7 +293,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &565714068
 MonoBehaviour:
@@ -308,10 +308,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  megaMan: {fileID: 632399959}
---- !u!4 &632399959 stripped
+  megaMan: {fileID: 908960004}
+--- !u!4 &908960004 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 917480826467584504, guid: 4e0fd44b1a1098046a0d638be8a95048, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5831843347273669989, guid: 4e0fd44b1a1098046a0d638be8a95048, type: 3}
   m_PrefabInstance: {fileID: 1722916998}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1034496345 stripped

@@ -9,14 +9,17 @@ public class Shooting : MonoBehaviour
     [SerializeField] private float shootingCooldown;
     [SerializeField] private Transform shotPoint;
     [SerializeField] private GameObject[] shots;
-    private Movement playerMovement;
     private float cooldownTimer = 10000;
+    private Rigidbody2D megaMan;
+    private Transform myShooter;
+    private float direction;
     // Start is called before the first frame update
 
     private void Awake()
     {
-        playerMovement = GetComponent<Movement>();
-        
+        direction = 1;
+        megaMan = GetComponentInParent<Rigidbody2D>();
+        myShooter = GetComponent<Transform>();
     }
 
     void Start()
@@ -32,6 +35,18 @@ public class Shooting : MonoBehaviour
             BasicShoot();
         }
         cooldownTimer += Time.deltaTime;
+
+        if (megaMan.velocity.x < 0 & direction != -1)
+        {
+            myShooter.position = new Vector3(myShooter.position.x - 2, myShooter.position.y, myShooter.position.z);
+            direction = -1;
+        }
+
+        if (megaMan.velocity.x > 0 & direction != 1)
+        {
+            myShooter.position = new Vector3(myShooter.position.x + 2, myShooter.position.y, myShooter.position.z);
+            direction = 1;
+        }
     }
     
     void BasicShoot()
@@ -39,7 +54,7 @@ public class Shooting : MonoBehaviour
         int workingIndex = FindShot();
         cooldownTimer = 0;
         shots[workingIndex].transform.position = shotPoint.position;
-        shots[workingIndex].GetComponent<BasicShotScript>().SetDirection(Mathf.Sign(transform.localScale.x));
+        shots[workingIndex].GetComponent<BasicShotScript>().SetDirection(direction);
     }
 
     private int FindShot()

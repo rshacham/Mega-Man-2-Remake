@@ -41,6 +41,7 @@ public class BasicShotScript : MonoBehaviour
 
     public void SetDirection(float _direction)
     {
+        //Sets new shot active and sets it's direction
         direction = _direction;
         gameObject.SetActive(true);
         hit = false;
