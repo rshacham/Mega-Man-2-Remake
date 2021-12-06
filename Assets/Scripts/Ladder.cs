@@ -8,21 +8,21 @@ public class Ladder : MonoBehaviour
     public bool isLadder;
     [SerializeField] private float climbingSpeed;
     public Rigidbody2D megaMan;
-    private float oldGravity;
+    [SerializeField] private float oldGravity;
+
     private void Start()
     {
-        isLadder = false;
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-
+        GameManager._shared.isLadder = true;
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        isLadder = false;
-        megaMan.gravityScale = oldGravity;
+        GameManager._shared.isLadder = false;
     }
 
     // Update is called once per frame
@@ -31,6 +31,10 @@ public class Ladder : MonoBehaviour
         if (isLadder == true)
         {
             megaMan.velocity = new Vector2(0, Input.GetAxis("Vertical") * climbingSpeed);
+            megaMan.gravityScale = 0;
+            return;
         }
+
+        megaMan.gravityScale = oldGravity;
     }
 }

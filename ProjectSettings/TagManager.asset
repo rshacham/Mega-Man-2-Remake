@@ -6,6 +6,12 @@ TagManager:
   tags:
   - GameController
   - Ladder
+  - MegaMan
+  - Walls
+  - Enemy
+  - Ground
+  - CameraTrigger
+  - BasicShots
   layers:
   - Default
   - TransparentFX
@@ -15,12 +21,12 @@ TagManager:
   - UI
   - Ground
   - Ladder
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Enemy
+  - Bullet
+  - MegaMan
+  - EnemyTrigger
+  - EnemyWeapon
+  - CameraTriggers
   - 
   - 
   - 

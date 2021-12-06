@@ -31,7 +31,7 @@ public class BasicShotScript : MonoBehaviour
         transform.Translate(movementSpeed, 0, 0);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D trigger)
     {
         hit = true;
         myBoxCollider.enabled = false;
@@ -46,15 +46,5 @@ public class BasicShotScript : MonoBehaviour
         gameObject.SetActive(true);
         hit = false;
         myBoxCollider.enabled = true;
-
-        
-        float localScaleX = transform.localScale.x;
-        if (Mathf.Sign(localScaleX) != direction)
-        {
-            localScaleX = -1 * localScaleX;
-        }
-
-        transform.localScale = new Vector3(localScaleX, transform.localScale.y, transform.localScale.z);
-
     }
 }

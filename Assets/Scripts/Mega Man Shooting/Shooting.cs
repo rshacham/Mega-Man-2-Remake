@@ -7,7 +7,6 @@ using UnityEngine.Timeline;
 public class Shooting : MonoBehaviour
 {
     [SerializeField] private float shootingCooldown;
-    [SerializeField] private Transform shotPoint;
     [SerializeField] private GameObject[] shots;
     private float cooldownTimer = 10000;
     private Rigidbody2D megaMan;
@@ -53,8 +52,9 @@ public class Shooting : MonoBehaviour
     {
         int workingIndex = FindShot();
         cooldownTimer = 0;
-        shots[workingIndex].transform.position = shotPoint.position;
+        shots[workingIndex].transform.position = myShooter.position;
         shots[workingIndex].GetComponent<BasicShotScript>().SetDirection(direction);
+        GameManager._shared.PlaySound("basicBullet");
     }
 
     private int FindShot()

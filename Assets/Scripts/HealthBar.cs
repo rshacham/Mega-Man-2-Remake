@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     public Slider mySlider;
-    public float currentHealth;
 
     private void Awake()
     {
@@ -16,10 +15,7 @@ public class HealthBar : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(2);
-        }
+        
     }
 
     public void SetHealth(float _health)

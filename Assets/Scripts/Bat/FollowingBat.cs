@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class FollowingBat : MonoBehaviour
 {
+    [SerializeField] private GameObject batObject;
     private Transform myBat;
+    [SerializeField]public int batLife;
     public Transform megaMan;
     private bool batFollow;
     [SerializeField] private float batSpeed;
@@ -23,16 +25,33 @@ public class FollowingBat : MonoBehaviour
             {
                 transform.position = Vector3.MoveTowards(myBat.position, megaMan.position, batSpeed);
             }
+            
+            if (batLife == 0)
+            {
+                batObject.SetActive(false);
+            }
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerEnter2D(Collider2D trigger)
+        {
+            if (trigger.CompareTag("BasicShots"))
+            {
+                batLife -= 1;
+                GameManager._shared.PlaySound("enemyHit");
+            }
+
+            if (trigger.CompareTag("MegaMan"))
+            {
+                GameManager._shared.TakeDamage(2);
+            }
+        }
+        public void FollowTrue()
         {
             batFollow = true;
         }
 
-        private void OnTriggerExit2D(Collider2D other)
+        public void FollowFalse()
         {
-
             batFollow = false;
         }
 }

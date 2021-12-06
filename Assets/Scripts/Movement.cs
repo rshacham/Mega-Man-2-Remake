@@ -11,7 +11,6 @@ public class Movement : MonoBehaviour
     private Rigidbody2D megaMan;
     private BoxCollider2D boxCollider;
     private bool doJump;
-    public bool isLadder;
     private float oldGravity;
 
 
@@ -30,7 +29,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isLadder == false)
+        if (GameManager._shared.isLadder == false)
         {
             megaMan.velocity = new Vector2(Input.GetAxis("Horizontal") * Speed, megaMan.velocity.y);
         }
@@ -40,18 +39,16 @@ public class Movement : MonoBehaviour
             MegaJump();
         }
 
-        if (isLadder == true)
+        if (GameManager._shared.isLadder == true)
         {
             megaMan.velocity = new Vector2(0, Input.GetAxis("Vertical") * Speed / 1.5f);
         }
-        
 
-        
+
     }
     private void MegaJump()
     {
-        megaMan.velocity = new Vector2(megaMan.velocity.x, Speed);
-
+        megaMan.velocity = new Vector2(megaMan.velocity.x, Speed * 1.8f);
     }
 
     private bool isGrounded()
@@ -59,7 +56,6 @@ public class Movement : MonoBehaviour
         RaycastHit2D raycastHit2D = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
         // if Mega Man is not touching the ground, return false
         return raycastHit2D.collider != null;
-
     }
     
     private void OnTriggerEnter2D(Collider2D collider)
@@ -83,7 +79,7 @@ public class Movement : MonoBehaviour
         //Called when entering a ladder trigger
         megaMan.transform.position = new Vector3(myLadder.GetComponent<Transform>().position.x,
             megaMan.transform.position.y, megaMan.transform.position.z);
-        isLadder = true;
+        GameManager._shared.isLadder = true;
         oldGravity = megaMan.gravityScale;
         megaMan.gravityScale = 0;
     }
@@ -91,7 +87,7 @@ public class Movement : MonoBehaviour
     public void exitLadder()
     {
         //Called when exiting a ladder trigger
-        isLadder = false;
+        GameManager._shared.isLadder = false;
         megaMan.gravityScale = oldGravity;
     }
 
