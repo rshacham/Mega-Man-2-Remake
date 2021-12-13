@@ -12,12 +12,16 @@ public class Movement : MonoBehaviour
     private BoxCollider2D boxCollider;
     private bool doJump;
     private float oldGravity;
+    private SpriteRenderer myRenderer;
+    private Animator myAnimator;
 
 
     private void Awake()
     {
         boxCollider = GetComponent<BoxCollider2D>();
         megaMan = GetComponent<Rigidbody2D>();
+        myRenderer = GetComponent<SpriteRenderer>();
+        myAnimator = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
@@ -32,23 +36,58 @@ public class Movement : MonoBehaviour
         if (GameManager._shared.isLadder == false)
         {
             megaMan.velocity = new Vector2(Input.GetAxis("Horizontal") * Speed, megaMan.velocity.y);
+            if (megaMan.velocity.x < 0f)
+            {
+                myRenderer.flipX = false; 
+            }
+
+            if (megaMan.velocity.x > 0f)
+            {
+                myRenderer.flipX = true;
+            }
+
+            if (Mathf.Abs(megaMan.velocity.x) > 0)
+            {
+                myAnimator.SetBool("Run", true);
+            }
+
+            else
+            {
+                myAnimator.SetBool("Run", false);
+            }
+            
+            myAnimator.SetFloat("Fall", megaMan.velocity.y);
         }
 
-        if (Input.GetKey(KeyCode.Space) & isGrounded())
+        if (isGrounded())
         {
-            MegaJump();
+            if (Input.GetKey(KeyCode.Space))
+            {
+                MegaJump();
+            }
+
+            else
+            {
+                myAnimator.SetBool("Jump", false);
+            }
+
         }
+        
 
         if (GameManager._shared.isLadder == true)
         {
             megaMan.velocity = new Vector2(0, Input.GetAxis("Vertical") * Speed / 1.5f);
+            myAnimator.SetFloat("Climb", megaMan.velocity.y);
+            print(myAnimator.GetFloat("Climb"));
         }
 
 
     }
+        
     private void MegaJump()
     {
         megaMan.velocity = new Vector2(megaMan.velocity.x, Speed * 1.8f);
+        myAnimator.SetBool("Jump", true);
     }
 
     private bool isGrounded()
@@ -82,6 +121,7 @@ public class Movement : MonoBehaviour
         GameManager._shared.isLadder = true;
         oldGravity = megaMan.gravityScale;
         megaMan.gravityScale = 0;
+        myAnimator.SetBool("OnLadder", true);
     }
 
     public void exitLadder()
@@ -89,6 +129,7 @@ public class Movement : MonoBehaviour
         //Called when exiting a ladder trigger
         GameManager._shared.isLadder = false;
         megaMan.gravityScale = oldGravity;
+        myAnimator.SetBool("OnLadder", false);
     }
 
     private void FixedUpdate()

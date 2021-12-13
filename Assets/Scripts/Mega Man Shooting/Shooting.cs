@@ -12,6 +12,7 @@ public class Shooting : MonoBehaviour
     private Rigidbody2D megaMan;
     private Transform myShooter;
     private float direction;
+    private Animator megaManAnimator;
     // Start is called before the first frame update
 
     private void Awake()
@@ -19,6 +20,7 @@ public class Shooting : MonoBehaviour
         direction = 1;
         megaMan = GetComponentInParent<Rigidbody2D>();
         myShooter = GetComponent<Transform>();
+        megaManAnimator = GetComponentInParent<Animator>();
     }
 
     void Start()
@@ -32,8 +34,14 @@ public class Shooting : MonoBehaviour
         if (Input.GetKey(KeyCode.X) && cooldownTimer > shootingCooldown)
         {
             BasicShoot();
+            megaManAnimator.SetBool("Shoot", true);
         }
         cooldownTimer += Time.deltaTime;
+
+        if (cooldownTimer > shootingCooldown + 0.1f)
+        {
+            megaManAnimator.SetBool("Shoot", false);
+        }
 
         if (megaMan.velocity.x < 0 & direction != -1)
         {
@@ -55,6 +63,7 @@ public class Shooting : MonoBehaviour
         shots[workingIndex].transform.position = myShooter.position;
         shots[workingIndex].GetComponent<BasicShotScript>().SetDirection(direction);
         GameManager._shared.PlaySound("basicBullet");
+        megaManAnimator.SetTrigger("Shoot");
     }
 
     private int FindShot()

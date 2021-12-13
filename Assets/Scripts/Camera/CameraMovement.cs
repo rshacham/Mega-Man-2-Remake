@@ -44,9 +44,6 @@ public class CameraMovement : MonoBehaviour
             //Room Camera(Used when i need to move to another room inside the stage, not finished)
             transform.position = Vector3.SmoothDamp(transform.position,new Vector3(GameManager._shared.cameraPosX, GameManager._shared.cameraPosY, transform.position.z), ref velocity, speed);
         }
-
-        print(GameManager._shared.cameraDirection);
-
     }
 
 
