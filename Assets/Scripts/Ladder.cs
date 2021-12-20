@@ -9,6 +9,8 @@ public class Ladder : MonoBehaviour
     [SerializeField] private float climbingSpeed;
     public Rigidbody2D megaMan;
     [SerializeField] private float oldGravity;
+    [SerializeField] private GameObject ground;
+    public Animator megaAnimator;
 
     private void Start()
     {
@@ -18,11 +20,21 @@ public class Ladder : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         GameManager._shared.isLadder = true;
+        megaAnimator.SetBool("AfterLadder", false);
+        ground.SetActive(false);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        if (other.tag == "MegaMan")
+        {            
+            ground.SetActive(true);
+        }
+
         GameManager._shared.isLadder = false;
+        megaAnimator.SetBool("AfterLadder", true);
+
+
     }
 
     // Update is called once per frame
@@ -37,4 +49,6 @@ public class Ladder : MonoBehaviour
 
         megaMan.gravityScale = oldGravity;
     }
+    
+
 }

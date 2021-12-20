@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public GameObject megaMan;
     public Slider lifeSlider;
     public static GameManager _shared;
-    public float cameraLeftBoundary;
-    public float cameraRightBoundary;
+    //Camera will follow MegaMan Horizontally only when he's right or left of those boundaries
+    [SerializeField] public float cameraLeftBoundary; 
+    [SerializeField] public float cameraRightBoundary;
     public float cameraPosX;
     public float cameraPosY;
     public bool cameraDirection; // if false will follow the player, if true camera will position itself on the center of the current room
@@ -17,6 +19,10 @@ public class GameManager : MonoBehaviour
     public float myLife;
     private float damageCooldown;
     public SoundManager soundManager;
+    public Animator megaAnimator;
+    public GameObject gameOver; //Canvas "Game Over"
+    public GameObject gameWon; //Canvas "Won Game"
+    private bool win = false; //if true, player has won the game
 
     [SerializeField]
     private float megaLife;
@@ -24,7 +30,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         _shared = this;
-        cameraLeftBoundary = 1.341f;
+        cameraLeftBoundary = 1.5316f;
         cameraRightBoundary = 43.73f;
         cameraDirection = false;
 
@@ -41,7 +47,19 @@ public class GameManager : MonoBehaviour
         if (myLife <= 0)
         {
             megaMan.SetActive(false);
-            print("Game Over!");
+            gameOver.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                SceneManager.LoadScene(1);
+            }
+        }
+        
+        else if (win)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                SceneManager.LoadScene(1);
+            }
         }
         damageCooldown -= Time.deltaTime;
         
@@ -55,11 +73,19 @@ public class GameManager : MonoBehaviour
             lifeSlider.value = myLife;
             damageCooldown = 1.5f;
             GameManager._shared.PlaySound("megaManHit");
+            megaAnimator.SetTrigger("Damage");
         }
     }
 
     public void PlaySound(string myAudio)
     {
         soundManager.PlaySound(myAudio);
+    }
+
+    public void Win()
+    {
+        gameWon.SetActive(true);
+        win = true;
+
     }
 }

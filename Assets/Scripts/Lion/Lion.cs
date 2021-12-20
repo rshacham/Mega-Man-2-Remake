@@ -7,6 +7,9 @@ public class Lion : MonoBehaviour
 {
     [SerializeField] private int lionLife;
     [SerializeField] private GameObject myLion;
+    private LionShooter shooterScript;
+    private Animator myAnimator;
+    [SerializeField] private bool finalEnemy; //if true, beating this lion will win the game
 
     private void Awake()
     {
@@ -15,6 +18,8 @@ public class Lion : MonoBehaviour
 
     private void Start()
     {
+        shooterScript = GetComponentInChildren<LionShooter>();
+        myAnimator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -22,6 +27,10 @@ public class Lion : MonoBehaviour
         if (lionLife <= 0)
         {
             myLion.SetActive(false);
+            if (finalEnemy)
+            {
+                GameManager._shared.Win();
+            }
         }
     }
 
@@ -29,14 +38,20 @@ public class Lion : MonoBehaviour
     {
         if (collider.CompareTag("MegaMan"))
         {
-            GameManager._shared.TakeDamage(20);
+            GameManager._shared.TakeDamage(15);
 
         }
 
         if (collider.CompareTag("BasicShots"))
         {
             lionLife -= 1;
+            myAnimator.SetTrigger("Damage");
             GameManager._shared.PlaySound("enemyHit");
         }
+    }
+
+    public void StartShoot()
+    {
+        shooterScript.StartShoot();
     }
 }

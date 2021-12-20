@@ -6,14 +6,21 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private float Speed;
+    [SerializeField] private GameObject[] grounds;
+    [SerializeField] private float Speed; 
     [SerializeField] private LayerMask groundLayer;
     private Rigidbody2D megaMan;
     private BoxCollider2D boxCollider;
-    private bool doJump;
+   // private bool doJump;
     private float oldGravity;
     private SpriteRenderer myRenderer;
     private Animator myAnimator;
+    private int groundCounter = 0;
+    public static Vector3 megaPosition;
+    private Vector3 smoothVelocity = Vector3.zero; //ref velocity for SmoothDamp movement
+
+
+    [SerializeField] public static bool canMove; //if false, mega man wouldn't be able to move without animation
 
 
     private void Awake()
@@ -22,6 +29,7 @@ public class Movement : MonoBehaviour
         megaMan = GetComponent<Rigidbody2D>();
         myRenderer = GetComponent<SpriteRenderer>();
         myAnimator = GetComponent<Animator>();
+        canMove = true;
     }
 
     // Start is called before the first frame update
@@ -33,7 +41,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager._shared.isLadder == false)
+        if (GameManager._shared.isLadder == false & canMove)
         {
             megaMan.velocity = new Vector2(Input.GetAxis("Horizontal") * Speed, megaMan.velocity.y);
             if (megaMan.velocity.x < 0f)
@@ -55,7 +63,7 @@ public class Movement : MonoBehaviour
             {
                 myAnimator.SetBool("Run", false);
             }
-            
+
             myAnimator.SetFloat("Fall", megaMan.velocity.y);
         }
 
@@ -74,11 +82,23 @@ public class Movement : MonoBehaviour
         }
         
 
-        if (GameManager._shared.isLadder == true)
+        if (GameManager._shared.isLadder == true & canMove)
         {
             megaMan.velocity = new Vector2(0, Input.GetAxis("Vertical") * Speed / 1.5f);
-            myAnimator.SetFloat("Climb", megaMan.velocity.y);
-            print(myAnimator.GetFloat("Climb"));
+            if (Mathf.Abs(megaMan.velocity.y) > 0)
+            {
+                myAnimator.SetBool("Climb", true);
+            }
+
+            else
+            {
+                myAnimator.SetBool("Climb", false);
+            }
+        }
+
+        if (!canMove)
+        {
+            transform.position = Vector3.SmoothDamp(transform.position, megaPosition, ref smoothVelocity, 3f);
         }
 
 
@@ -131,6 +151,14 @@ public class Movement : MonoBehaviour
         megaMan.gravityScale = oldGravity;
         myAnimator.SetBool("OnLadder", false);
     }
+
+    public void createGround()
+    {
+        grounds[groundCounter].SetActive(true);
+        groundCounter += 1;
+    }
+
+
 
     private void FixedUpdate()
     {

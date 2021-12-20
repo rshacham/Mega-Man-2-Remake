@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7459856049797614728}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.04, y: -6.67, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.01, y: -0.77, z: 0}
+  m_LocalScale: {x: 0.19687499, y: 0.14060901, z: 1}
   m_Children: []
   m_Father: {fileID: 7459856049973226353}
   m_RootOrder: 0
@@ -83,6 +83,7 @@ GameObject:
   - component: {fileID: 7459856049973226352}
   - component: {fileID: 7459856049973226639}
   - component: {fileID: 7459856049973226638}
+  - component: {fileID: -139070467858675595}
   m_Layer: 8
   m_Name: Bat
   m_TagString: Untagged
@@ -170,7 +171,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03638757, y: -0.0010923296}
+  m_Offset: {x: 0.036387578, y: -0.03001339}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -181,7 +182,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.17763445, y: 0.25987825}
+  m_Size: {x: 0.16420126, y: 0.1662484}
   m_EdgeRadius: 0
 --- !u!114 &7459856049973226638
 MonoBehaviour:
@@ -198,4 +199,23 @@ MonoBehaviour:
   batObject: {fileID: 7459856049973226637}
   batLife: 2
   megaMan: {fileID: 0}
-  batSpeed: 0.01
+  batSpeed: 0.015
+--- !u!95 &-139070467858675595
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7459856049973226637}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c41d28ad8c5e19248b1ea60837d13aae, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Game.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/StartMenu.unity
+    guid: 6eb5cde9f94513144ba9cf3b15751dbc
+  - enabled: 1
+    path: Assets/Scenes/Woodman Level.unity
+    guid: 3e1c1928722e8ae45bba962e5d8f1071
   m_configObjects: {}

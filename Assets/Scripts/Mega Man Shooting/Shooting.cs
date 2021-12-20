@@ -31,7 +31,7 @@ public class Shooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.X) && cooldownTimer > shootingCooldown)
+        if (Input.GetKeyDown(KeyCode.X) && cooldownTimer > shootingCooldown & GameManager._shared.isLadder is false)
         {
             BasicShoot();
             megaManAnimator.SetBool("Shoot", true);

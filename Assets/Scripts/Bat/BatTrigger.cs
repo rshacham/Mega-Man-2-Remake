@@ -7,10 +7,12 @@ public class BatTrigger : MonoBehaviour
 {
     public GameObject bat;
     private FollowingBat follow;
+    private Animator myAnimator;
     
     private void Start()
     {
         follow = GetComponentInParent<FollowingBat>();
+        myAnimator = GetComponentInParent<Animator>();
 
     }
 
@@ -22,5 +24,7 @@ public class BatTrigger : MonoBehaviour
     private void BatFollow()
     {
         follow.FollowTrue();
+        myAnimator.SetBool("Awake", true);
+        
     }
 }

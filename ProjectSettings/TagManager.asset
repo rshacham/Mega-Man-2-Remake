@@ -27,8 +27,8 @@ TagManager:
   - EnemyTrigger
   - EnemyWeapon
   - CameraTriggers
-  - 
-  - 
+  - FireTrigger
+  - DeactivateFire
   - 
   - 
   - 

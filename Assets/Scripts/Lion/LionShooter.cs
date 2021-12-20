@@ -1,16 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LionShooter : MonoBehaviour
 {
     [SerializeField] private GameObject[] shots;
+    [SerializeField] private GameObject lionFire;
     [SerializeField] private Transform myShooter;
     private int shotCounter = 0;
-    private float singleShotCooldown = 15;
-    [SerializeField] private float singleCooldownTimer;
-    private float fireCooldown = 15;
-    [SerializeField] private float fireCooldownTimer;
+    [SerializeField] private float ballsAmount;
+    [SerializeField] float ballCoolDown = 1; //cool down time between single fire balls
+    [SerializeField] private float ballTimer; //Timer for the time since the last ball was shot
+    //[SerializeField] private float fireCoolDown = 15; //Time between lion attacks
+    //[SerializeField] private float fireTimer; //Timer for the time between lion attacks
+    private bool shouldShoot = false;
+
+    //private bool fireBalls = false; //If true, will fire balls
     
     // Start is called before the first frame update
     void Start()
@@ -21,25 +27,35 @@ public class LionShooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (singleShotCooldown > singleCooldownTimer & fireCooldown > fireCooldownTimer)
+
+        if (shouldShoot & ballTimer > ballCoolDown)
         {
             BasicShoot();
         }
-        fireCooldown += Time.deltaTime;
-        singleShotCooldown += Time.deltaTime;
+        //if (ballTimer > ballCoolDown & fireTimer > fireCoolDown)
+        //{
+        //    BasicShoot();
+        //}
+        //fireTimer += Time.deltaTime;
+        ballTimer += Time.deltaTime;
     }   
 
     void BasicShoot()
     {
-        shots[shotCounter].transform.position = new Vector3(myShooter.position.x, myShooter.position.y, -1);
         shots[shotCounter].SetActive(true);
         shotCounter += 1;
-        singleShotCooldown = 0;
-        if (shotCounter == 7)
+        ballTimer = 0;
+        if (shotCounter == ballsAmount) //stops the lion attack
         {
             shotCounter = 0;
-            fireCooldown = 0;
+            shouldShoot = false;
         }
     }
     
+    public void StartShoot()
+    {
+        ballsAmount = Random.Range(3, 8);
+        shouldShoot = true;
+    }
+
 }
