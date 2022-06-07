@@ -41,7 +41,7 @@
     
   Sprites - [Sprite-Resource](https://www.spriters-resource.com/nes/mm2/)
     
-  Sounds - [Sound-Resource](https://www.sounds-resource.com/nes/megaman2/sound/3616/)
+  Sounds - [Sounds-Resource](https://www.sounds-resource.com/nes/megaman2/sound/3616/)
   
   
 
