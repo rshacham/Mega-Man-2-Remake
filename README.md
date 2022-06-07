@@ -2,5 +2,5 @@
 
 <div align='center'>
   
-  <img src='Logo.png'>
+  <img src='Images/Logo.png width = 500 height = 200'>
 
