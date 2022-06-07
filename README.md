@@ -6,6 +6,7 @@
     
 # Table Of Contents
   - [About](#about)
+  - [How To Install](#how-to-install)
   - [How To Play](#how-to-play)
   - [Screenshots](#screenshots)
   - [Credits](#credits)
@@ -18,7 +19,30 @@
     
   This remake consists of 2 levels - a remake to the level "Wood Man" from the original game, followed by a self-designed level.
  
+    
+  # How To Install
   
+  **Windows**:
+    
+  1. Download the [Windows Build](https://github.com/rshacham/Mega-Man-2-Remake/raw/main/Builds/Mega-Man%202%20-%20Windows%20Build.zip)
+    
+  2. Unzip
+    
+  3. Run "Mega-Man 2 Remake.EXE"
+    
+  4. Enjoy :)
+    
+  
+  **Mac OS:**
+  
+  1. Download the [Mac Build Folder](https://github.com/rshacham/Mega-Man-2-Remake/raw/main/Builds/Mega-Man%202%20-%20Mac%20OS%20Build.app.zip)
+  
+  2. Unzip
+    
+  3. Run "Mega-Man 2 - Mac OS Build.app"
+    
+  4. Enjoy :)
+    
   # How To Play
    
   - Left/Right - Move
