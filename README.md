@@ -3,6 +3,12 @@
   <img src='Images/Logo.png' width = "625" height = "250">
   
   <div align='left'>
+    
+# Table Of Contents
+  - [About](#about)
+  - [How To Play](#how-to-play)
+  - [Screenshots](#screenshots)
+  - [Credits](#credits)
 
   # About
   
@@ -19,10 +25,23 @@
   - X - Shoot
   - Space - Jump
     
-  # Screenshots & Gifs
+  # Screenshots
   
-    <div align='center'>
+  <div align='center'>
+      
+  <img src='Images/Mega Man Idle.png' width = "400" height = "225">             <img src='Images/Mega Man Shooting.png' width = "400" height = "225">
+    
+  <img src='Images/Mega Man Lion.png' width = "400" height = "225">             <img src='Images/Mega Man Ladder.png' width = "400" height = "225">
 
+
+    
+  <div align='left'>
+
+  # Credits
+    
+  Sprites - [Sprite-Resource](https://www.spriters-resource.com/nes/mm2/)
+    
+  Sounds - [Sounds-Resource](https://www.sounds-resource.com/nes/megaman2/sound/3616/)
   
   
 
