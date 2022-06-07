@@ -4,7 +4,7 @@
   
   <div align='left'>
     
-  # Table Of Contents
+# Table Of Contents
   - [About](#about)
   - [How To Play](#how-to-play)
   - [Screenshots](#screenshots)
