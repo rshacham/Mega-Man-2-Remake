@@ -28,7 +28,7 @@
     
   2. Unzip
     
-  3. Run "Mega-Man 2 Remake.EXE"
+  3. Run "Mega-Man 2 Remake.exe"
     
   4. Enjoy :)
     
