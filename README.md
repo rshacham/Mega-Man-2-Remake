@@ -53,9 +53,9 @@
   
   <div align='center'>
       
-  <img src='Images/Mega Man Idle.png' width = "400" height = "225">             <img src='Images/Mega Man Shooting.png' width = "400" height = "225">
+  <img src='Images/Mega Man Idle.png' width = "400" height = "225">             <img src='Images/Mega Man Ladder.png' width = "400" height = "225">
     
-  <img src='Images/Mega Man Lion.png' width = "400" height = "225">             <img src='Images/Mega Man Ladder.png' width = "400" height = "225">
+  <img src='Images/Mega Man Lion.png' width = "400" height = "225">             <img src='Images/Mega Man Shooting.png' width = "400" height = "225">
 
 
     
